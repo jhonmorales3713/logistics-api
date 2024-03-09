@@ -1,10 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\V1;
 
 use App\Models\ItemType;
+use Illuminate\Http\Request;
 use App\Http\Requests\StoreItemTypeRequest;
 use App\Http\Requests\UpdateItemTypeRequest;
+use App\Filters\V1\ItemTypeFilter;
+use App\Http\Resources\V1\ItemTypeCollection;
 
 class ItemTypeController extends Controller
 {
@@ -13,7 +16,17 @@ class ItemTypeController extends Controller
      */
     public function index()
     {
-        //
+    }
+    /**
+     * Display a listing of the resource.
+     */
+    public function dropdown(Request $request)
+    {
+        $filter = new ItemTypeFilter();
+        $filterItems =  $filter->transform($request); //[['column', 'operator', 'value']]
+        $itemTypes = ItemType::where($filterItems)->orderBy('name');
+        
+        return new ItemTypeCollection($itemTypes->paginate()->appends($request->query()));
     }
 
     /**

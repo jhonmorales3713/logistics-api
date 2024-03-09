@@ -1,0 +1,26 @@
+[
+    {        
+        "name" : "Diesel",
+        "status" : "activ"
+    },
+    {        
+        "name" : "Ethanol",
+        "status" : "activ"
+    },
+    {        
+        "name" : "87 Octane",
+        "status" : "activ"
+    },
+    {        
+        "name" : "Biodiesel",
+        "status" : "activ"
+    },
+    {        
+        "name" : "Premium Gas",
+        "status" : "activ"
+    },
+    {        
+        "name" : "Regular/Unleaded",
+        "status" : "activ"
+    }
+]

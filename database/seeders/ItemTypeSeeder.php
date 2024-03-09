@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\ItemType;
 
 class ItemTypeSeeder extends Seeder
 {
@@ -12,6 +13,9 @@ class ItemTypeSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        ItemType::factory()
+        ->create(['name'=>'Goods', 'status' => 'activ']);
+        ItemType::factory()
+        ->create(['name'=>'Furniture', 'status' => 'activ']);
     }
 }

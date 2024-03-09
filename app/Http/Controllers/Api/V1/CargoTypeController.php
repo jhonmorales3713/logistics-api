@@ -1,10 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\V1;
 
 use App\Models\CargoType;
 use App\Http\Requests\StoreCargoTypeRequest;
 use App\Http\Requests\UpdateCargoTypeRequest;
+use App\Filters\V1\CargoTypeFilter;
+use App\Http\Resources\V1\CargoTypeCollection;
+use Illuminate\Http\Request;
 
 class CargoTypeController extends Controller
 {
@@ -24,6 +27,17 @@ class CargoTypeController extends Controller
         //
     }
 
+    /**
+     * Display a listing of the resource.
+     */
+    public function dropdown(Request $request)
+    {
+        $filter = new CargoTypeFilter();
+        $filterItems =  $filter->transform($request); //[['column', 'operator', 'value']]
+        $itemTypes = CargoType::where($filterItems);
+        
+        return new CargoTypeCollection($itemTypes->paginate()->appends($request->query()));
+    }
     /**
      * Store a newly created resource in storage.
      */

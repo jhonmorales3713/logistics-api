@@ -1,0 +1,22 @@
+[
+    {        
+        "name" : "Toyota",
+        "status" : "activ"
+    },
+    {        
+        "name" : "Nissan",
+        "status" : "activ"
+    },
+    {        
+        "name" : "Ford",
+        "status" : "activ"
+    },
+    {        
+        "name" : "Mercedes",
+        "status" : "activ"
+    },
+    {        
+        "name" : "Fiat",
+        "status" : "activ"
+    }
+]

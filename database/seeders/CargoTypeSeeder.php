@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\CargoType;
 
 class CargoTypeSeeder extends Seeder
 {
@@ -12,6 +13,9 @@ class CargoTypeSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        CargoType::factory()
+        ->create(['name'=>'Van', 'status' => 'activ']);
+        CargoType::factory()
+        ->create(['name'=>'Closed Van', 'status' => 'activ']);
     }
 }

@@ -1,0 +1,14 @@
+[
+    {        
+        "name" : "Warehouse",
+        "access" : "inquiview,inquiinval,vehicview,vehicupdat",
+        "created_by" : 1,
+        "status" : "activ"
+    },
+    {        
+        "name" : "Admin",
+        "access" : "driveview,drivecreat,driveupdat,drivedelet,driveassig",
+        "created_by" : 1,
+        "status" : "activ"
+    }
+]

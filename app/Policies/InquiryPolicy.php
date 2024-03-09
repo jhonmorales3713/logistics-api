@@ -21,7 +21,7 @@ class InquiryPolicy
      */
     public function view(User $user, Inquiry $inquiry): bool
     {
-        //
+        // $this->authorize('update', $post);
     }
 
     /**
@@ -37,7 +37,23 @@ class InquiryPolicy
      */
     public function update(User $user, Inquiry $inquiry): bool
     {
-        //
+        // dd($inquiry);
+    }
+
+    /**
+     * Determine whether the user can receive the model.
+     */
+    public function receive(User $user, Inquiry $inquiry)
+    {
+        return $inquiry->status == Inquiry::STATUS_PENDING ? Response::allow() : Response::deny("Update Failed. Please refresh the page.");
+    }
+
+    /**
+     * Determine whether the user can invalid the model.
+     */
+    public function invalid(User $user, Inquiry $inquiry)
+    {
+        return $inquiry->status == Inquiry::STATUS_PENDING || $inquiry->status == Inquiry::STATUS_RECEIVED ? Response::allow() : Response::deny("Update Failed. Please refresh the page.");
     }
 
     /**
