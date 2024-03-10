@@ -24,9 +24,10 @@ return new class extends Migration
             $table->string('status');
             $table->dateTime('targetDate');
             $table->timestamps();
-            $table->foreignId('cargoType_id')->nullable()->constrained('cargoType')->onDelete('cascade');
-            $table->foreignId('itemType_id')->nullable()->constrained('ype')->onDelete('cascade');
-            
+            $table->unsignedBigInteger('cargoType_id')->index()->nullable();
+            $table->foreign('cargoType_id')->references('id')->on('inquiries')->onUpdate('cascade')->onDelete('cascade');
+            $table->unsignedBigInteger('itemType_id')->index()->nullable();
+            $table->foreign('itemType_id')->references('id')->on('inquiries')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

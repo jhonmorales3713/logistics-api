@@ -21,10 +21,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers\Api'], function() {
 });
 Route::group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers\Api\V1', 'middleware' => 'auth:sanctum'], function() {
-    Route::get('inquiry/showByRefNum/{referenceNumber}', ['uses' => 'InquiryController@showByRefNum']);
+    Route::get('inquiry/showByRefNum/{referenceNumber}', ['uses' => 'InquiryController@showByRefNum'])->withoutMiddleware(['auth:sanctum']);
     Route::get('inquiry/show/{id}', ['uses' => 'InquiryController@show']);
     Route::get('inquiry/receive/{id}', ['uses' => 'InquiryController@receive']);
     Route::get('inquiry/invalid/{id}', ['uses' => 'InquiryController@invalid']);
+    Route::post('inquiry/inquire', ['uses' => 'InquiryController@inquire'])->withoutMiddleware(['auth:sanctum']);
     Route::apiResource('inquiry', InquiryController::class);
     Route::get('vehicle/show/{id}', ['uses' => 'VehicleController@show']);
     Route::put('vehicle/update/{id}', ['uses' => 'VehicleController@update']);
@@ -33,7 +34,7 @@ Route::group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers\Api\V1', 'm
     Route::get('vehicle/setActive/{id}', ['uses' => 'VehicleController@setActive']);
     Route::apiResource('vehicle', VehicleController::class);
     Route::get('user-role/setActive/{id}', ['uses' => 'UserRoleController@setActive']);
-    Route::get('user-role/dropdown/', ['uses' => 'UserRoleController@dropdown']);
+    Route::get('user-role/dropdown/', ['uses' => 'UserRoleController@dropdown'])->withoutMiddleware(['auth:sanctum']);
     Route::get('user-role/setInactive/{id}', ['uses' => 'UserRoleController@setInactive']);
     Route::put('user-role/update/{id}', ['uses' => 'UserRoleController@update']);
     Route::get('user-role/show/{id}', ['uses' => 'UserRoleController@show']);
@@ -45,19 +46,19 @@ Route::group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers\Api\V1', 'm
     Route::get('user/show/{id}', ['uses' => 'UserController@show']);
     Route::apiResource('user', UserController::class);
 
-    Route::get('itemType/dropdown', ['uses' => 'ItemTypeController@dropdown']);
+    Route::get('itemType/dropdown', ['uses' => 'ItemTypeController@dropdown'])->withoutMiddleware(['auth:sanctum']);
     Route::apiResource('itemtype', ItemTypeController::class);
 
-    Route::get('vehicleMake/dropdown', ['uses' => 'VehicleMakeController@dropdown']);
+    Route::get('vehicleMake/dropdown', ['uses' => 'VehicleMakeController@dropdown'])->withoutMiddleware(['auth:sanctum']);
     Route::apiResource('vehiclemake', VehicleMakeController::class);
 
-    Route::get('vehicleModel/dropdown', ['uses' => 'VehicleModelController@dropdown']);
+    Route::get('vehicleModel/dropdown', ['uses' => 'VehicleModelController@dropdown'])->withoutMiddleware(['auth:sanctum']);
     Route::apiResource('vehiclemodel', VehicleModelController::class);
     
-    Route::get('gasType/dropdown', ['uses' => 'GasTypeController@dropdown']);
+    Route::get('gasType/dropdown', ['uses' => 'GasTypeController@dropdown'])->withoutMiddleware(['auth:sanctum']);
     Route::apiResource('gasType', GasTypeController::class);
     
-    Route::get('cargoType/dropdown', ['uses' => 'CargoTypeController@dropdown']);
+    Route::get('cargoType/dropdown', ['uses' => 'CargoTypeController@dropdown'])->withoutMiddleware(['auth:sanctum']);
     Route::apiResource('cargotype', CargoTypeController::class);
 
     // Route::get('session/authenticate', ['uses' => 'SessionController@authenticate'])->name('session.authenticate');

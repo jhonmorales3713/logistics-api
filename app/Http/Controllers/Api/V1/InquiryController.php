@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\V1;
 use App\Models\Inquiry;
 use App\Models\CargoType;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreCustomerInquiryRequest;
 use App\Http\Requests\StoreInquiryRequest;
 use App\Http\Requests\UpdateInquiryRequest;
 use App\Http\Resources\V1\InquiryResource;
@@ -76,6 +77,14 @@ class InquiryController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(StoreInquiryRequest $request)
+    {
+        return new InquiryResource(Inquiry::create($request->all()));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function inquire(StoreCustomerInquiryRequest $request)
     {
         return new InquiryResource(Inquiry::create($request->all()));
     }

@@ -6,15 +6,14 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 use App\Models\Inquiry;
 
-class StoreInquiryRequest extends FormRequest
+class StoreCustomerInquiryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        $user = $this->user();
-        return $user != null;
+        return true;
     }
 
     /**
