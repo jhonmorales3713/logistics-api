@@ -1,0 +1,20 @@
+[
+    {        
+        "inquiry_id" : 1,
+        "vehicle_id" : 1,
+        "consignee_id" : 1,
+        "estimatedDeliveryDate" : "2024-03-11",
+        "status" : "pendi",
+        "origin" : "Manila",
+        "destination" : "Malabon"
+    },
+    {        
+        "inquiry_id" : 2,
+        "vehicle_id" : 3,
+        "consignee_id" : 2,
+        "estimatedDeliveryDate" : "2024-03-12",
+        "status" : "pendi",
+        "origin" : "Malabon",
+        "destination" : "Manila"
+    }
+]

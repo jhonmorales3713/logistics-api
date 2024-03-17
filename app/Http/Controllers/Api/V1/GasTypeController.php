@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api\V1;
 use App\Models\GasType;
 use App\Http\Requests\StoreGasTypeRequest;
 use App\Http\Requests\UpdateGasTypeRequest;
-use App\Filters\V1\GasTypeFilter;
+use App\Filters\V1\DropdownFilter;
 use App\Http\Resources\V1\GasTypeCollection;
 use Illuminate\Http\Request;
 
@@ -32,7 +32,7 @@ class GasTypeController extends Controller
      */
     public function dropdown(Request $request)
     {
-        $filter = new GasTypeFilter();
+        $filter = new DropdownFilter();
         $filterItems =  $filter->transform($request); //[['column', 'operator', 'value']]
         $gasTypes = GasType::where($filterItems)->orderBy('name');
         

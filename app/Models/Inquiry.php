@@ -39,4 +39,8 @@ class Inquiry extends Model
     public function itemType() {
         return $this->belongsTo(ItemType::class,'itemType_id');
     }
+
+    public function shipmentRequests() {
+        return $this->hasMany(ShipmentRequest::class);
+    }
 }

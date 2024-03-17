@@ -6,7 +6,7 @@ use App\Models\ItemType;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreItemTypeRequest;
 use App\Http\Requests\UpdateItemTypeRequest;
-use App\Filters\V1\ItemTypeFilter;
+use App\Filters\V1\DropdownFilter;
 use App\Http\Resources\V1\ItemTypeCollection;
 
 class ItemTypeController extends Controller
@@ -22,7 +22,7 @@ class ItemTypeController extends Controller
      */
     public function dropdown(Request $request)
     {
-        $filter = new ItemTypeFilter();
+        $filter = new DropdownFilter();
         $filterItems =  $filter->transform($request); //[['column', 'operator', 'value']]
         $itemTypes = ItemType::where($filterItems)->orderBy('name');
         

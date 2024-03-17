@@ -1,0 +1,17 @@
+[
+    {        
+        "shipmentRequest_id" : 1,
+        "quantity" : 1,
+        "name" : "Item 1"
+    },
+    {        
+        "shipmentRequest_id" : 1,
+        "quantity" : 2,
+        "name" : "Item 2"
+    },
+    {        
+        "shipmentRequest_id" : 1,
+        "quantity" : 3,
+        "name" : "Item 3"
+    }
+]

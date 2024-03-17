@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StoreVehicleRequest;
 use App\Http\Requests\UpdateVehicleRequest;
 use App\Services\VehicleService;
+use App\Http\Resources\V1\Vehicle\VehicleFragment;
 use App\Http\Resources\V1\VehicleResource;
 
 class VehicleController extends Controller
@@ -114,5 +115,21 @@ class VehicleController extends Controller
     public function destroy(Vehicle $vehicle)
     {
         //
+    }
+
+    /**
+     * Display a listing of the resource.
+     */
+    public function dropdown(Request $request)
+    {
+        $vehicles = Vehicle::with('vehicleMake','vehicleModel')->where('plateNumber','like', '%'.$request->input('plateNumber').'%')->limit(10)->get();
+        if ($vehicles) {
+            $dropDown = [];
+            foreach ($vehicles as $vehicle) {
+                $dropDown[] = new VehicleFragment($vehicle);
+            }
+            return $dropDown;
+        }
+        throw ValidationException::withMessages(['error' => 'No vehicle Found']);
     }
 }

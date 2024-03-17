@@ -60,4 +60,8 @@ class Vehicle extends Model
     public function vehicleModel() {
         return $this->belongsTo(VehicleModel::class,'model_id');
     }
+
+    public function shipmentRequests() {
+        return $this->hasMany(ShipmentRequest::class);
+    }
 }

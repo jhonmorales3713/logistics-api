@@ -28,17 +28,19 @@ class UserRolesSeeder extends Seeder
                 "status" => $value->status,
             ]);
         };
-        $user = User::create([
-            "name" => 'Warehouse',
-            "username" => 'warehouse',
-            "email" => 'warehouse@logistics.com',
-            "created_at" => now(),
-            "password" => Hash::make('password'),
-        ]);
         $user2 = User::create([
             "name" => 'Admin',
             "username" => 'admin',
+            "status" => 'activ',
             "email" => 'admin@logistics.com',
+            "created_at" => now(),
+            "password" => Hash::make('password'),
+        ]);
+        $user = User::create([
+            "name" => 'Warehouse',
+            "username" => 'warehouse',
+            "status" => 'activ',
+            "email" => 'warehouse@logistics.com',
             "created_at" => now(),
             "password" => Hash::make('password'),
         ]);

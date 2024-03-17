@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api\V1;
 use App\Models\CargoType;
 use App\Http\Requests\StoreCargoTypeRequest;
 use App\Http\Requests\UpdateCargoTypeRequest;
-use App\Filters\V1\CargoTypeFilter;
+use App\Filters\V1\DropdownFilter;
 use App\Http\Resources\V1\CargoTypeCollection;
 use Illuminate\Http\Request;
 
@@ -32,7 +32,7 @@ class CargoTypeController extends Controller
      */
     public function dropdown(Request $request)
     {
-        $filter = new CargoTypeFilter();
+        $filter = new DropdownFilter();
         $filterItems =  $filter->transform($request); //[['column', 'operator', 'value']]
         $itemTypes = CargoType::where($filterItems);
         

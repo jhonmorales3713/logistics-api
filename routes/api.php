@@ -27,6 +27,7 @@ Route::group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers\Api\V1', 'm
     Route::get('inquiry/invalid/{id}', ['uses' => 'InquiryController@invalid']);
     Route::post('inquiry/inquire', ['uses' => 'InquiryController@inquire'])->withoutMiddleware(['auth:sanctum']);
     Route::apiResource('inquiry', InquiryController::class);
+    Route::get('vehicle/dropdown', ['uses' => 'VehicleController@dropdown'])->withoutMiddleware(['auth:sanctum']);
     Route::get('vehicle/show/{id}', ['uses' => 'VehicleController@show']);
     Route::put('vehicle/update/{id}', ['uses' => 'VehicleController@update']);
     Route::get('vehicle/setForMaintennance/{id}', ['uses' => 'VehicleController@setForMaintennance']);
@@ -45,6 +46,11 @@ Route::group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers\Api\V1', 'm
     Route::put('user/update/{id}', ['uses' => 'UserController@update']);
     Route::get('user/show/{id}', ['uses' => 'UserController@show']);
     Route::apiResource('user', UserController::class);
+    Route::get('shipment-request/show/{id}', ['uses' => 'ShipmentRequestController@show']);
+    Route::put('shipment-request/update/{id}', ['uses' => 'ShipmentRequestController@update']);
+    Route::apiResource('shipment-request', ShipmentRequestController::class);
+    Route::get('consignee/dropdown/', ['uses' => 'ConsigneeController@dropdown'])->withoutMiddleware(['auth:sanctum']);
+    Route::apiResource('consignee', ConsigneeController::class);
 
     Route::get('itemType/dropdown', ['uses' => 'ItemTypeController@dropdown'])->withoutMiddleware(['auth:sanctum']);
     Route::apiResource('itemtype', ItemTypeController::class);

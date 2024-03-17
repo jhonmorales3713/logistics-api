@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
 use App\Filters\ApiFilter;
 use App\Libraries\QueryTranslations;
 
-class CargoTypeFilter extends ApiFilter {
+class DropdownFilter extends ApiFilter {
     protected $validParams = [
         'name' => ['eq', 'like'],
         'status' => ['eq'],
