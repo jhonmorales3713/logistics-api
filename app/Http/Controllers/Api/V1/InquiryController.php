@@ -12,6 +12,7 @@ use App\Http\Resources\V1\InquiryResource;
 use App\Filters\V1\InquiryFilter;
 use App\Services\InquiryService;
 use App\Http\Resources\V1\InquiryCollection;
+use App\Http\Resources\V1\Inquiry\InquiryFragment;
 use Illuminate\Validation\ValidationException;
 // use App\Http\Resources\V1\CustomerCollection;
 
@@ -103,6 +104,21 @@ class InquiryController extends Controller
         }
     }
 
+    /**
+     * Display a listing of the resource.
+     */
+    public function dropdown(Request $request)
+    {
+        $inquiries = Inquiry::with('cargoType','itemType')->where('referenceNumber','like', '%'.$request->input('referenceNumber').'%')->limit(10)->get();
+        if ($inquiries) {
+            $dropDown = [];
+            foreach ($inquiries as $inquiry) {
+                $dropDown[] = new InquiryFragment($inquiry);
+            }
+            return $dropDown;
+        }
+        throw ValidationException::withMessages(['error' => 'No inquiry Found']);
+    }
     /**
      * Display the specified resource.
      */

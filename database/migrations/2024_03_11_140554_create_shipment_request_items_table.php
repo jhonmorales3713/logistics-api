@@ -14,8 +14,8 @@ return new class extends Migration
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         Schema::create('shipment_request_items', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('shipment_request_id')->index()->nullable();
-            $table->foreign('shipment_request_id')->references('id')->on('shipmentRequests')->onUpdate('cascade')->onDelete('cascade');
+            $table->unsignedBigInteger('shipment_request_id');
+            $table->foreign('shipment_request_id')->references('id')->on('shipment_requests')->onDelete('cascade');
             $table->decimal('quantity',10, 2);
             $table->string('name');
         });

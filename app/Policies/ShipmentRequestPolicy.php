@@ -63,4 +63,28 @@ class ShipmentRequestPolicy
     {
         //
     }
+
+    /**
+     * Determine whether the user can approve the model.
+     */
+    public function approve(User $user, ShipmentRequest $shipmentRequest): bool
+    {
+        return $shipmentRequest->status == ShipmentRequest::STATUS_PENDING;
+    }
+
+    /**
+     * Determine whether the user can decline the model.
+     */
+    public function decline(User $user, ShipmentRequest $shipmentRequest)
+    {
+        return $shipmentRequest->status == ShipmentRequest::STATUS_PENDING ? Response::allow() : Response::deny("Update Failed. Please refresh the page.");
+    }
+
+    /**
+     * Determine whether the user can decline the model.
+     */
+    public function unapprove(User $user, ShipmentRequest $shipmentRequest): bool
+    {
+        return $shipmentRequest->status == ShipmentRequest::STATUS_APPROVE;
+    }
 }

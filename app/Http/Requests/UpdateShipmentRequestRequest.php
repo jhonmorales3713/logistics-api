@@ -29,7 +29,10 @@ class UpdateShipmentRequestRequest extends FormRequest
             'destination' => ['required'],
             'vehicle_id' => ['required'],
             'updated_at' => ['nullable'],
+            'estimatedDeliveryDate' => ['required|date'],
             'shipmentRequestItems' => 'required|array',
+            'shipmentRequestItems.*.name' => 'required',
+            'shipmentRequestItems.*.quantity' => 'required|numeric',
         ];
         return $rules;
     }
@@ -37,9 +40,12 @@ class UpdateShipmentRequestRequest extends FormRequest
     public function attributes()
     {
         return [
-            // 'mileAge' => 'mileage',
-            // 'chassisNumber' => 'chassis #',
-            // 'plateNumber' => 'plate #',
+            'shipmentRequestItems.*.name' => 'name',
+            'shipmentRequestItems.*.quantity' => 'quantity',
+            'estimatedDeliveryDate' => 'target delivery date',
+            'vehicle_id' => 'vehicle',
+            'inquiry_id' => 'inquiry',
+            'consignee_id' => 'consignee',
         ];
     }
     public function messages()
@@ -47,7 +53,7 @@ class UpdateShipmentRequestRequest extends FormRequest
         return [
             'shipmentRequestItems.required' => 'You must have at least one item.',
             'shipmentRequestItems.array' => 'Items must be an array',
-            'shipmentRequestItems.*.exists' => 'Invalid item ID provided.',
+            'shipmentRequestItems.*.exists' => 'Invalid ID provided.',
         ];
     }
     public function all($keys = null)
@@ -67,6 +73,10 @@ class UpdateShipmentRequestRequest extends FormRequest
         if (isset($data['consignee'])) {
             $data['consignee_id'] = $data['consignee'];
             unset($data['consignee']);
+        }
+        if (isset($data['deliveryDate'])) {
+            $data['estimatedDeliveryDate'] = $data['deliveryDate'];
+            unset($data['deliveryDate']);
         }
         if (isset($data['items'])) {
             $data['shipmentRequestItems'] = $data['items'];

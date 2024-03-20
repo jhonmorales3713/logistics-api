@@ -29,6 +29,7 @@ class ShipmentRequestResource extends JsonResource
             'vehicle' => new VehicleFragment($this->whenLoaded('vehicle')),
             'items' => ShipmentRequestItemCollection::collection($this->whenLoaded('shipmentRequestItems')),
             'canApprove' => $this->status == ShipmentRequest::STATUS_PENDING,
+            'canUnapprove' => $this->status == ShipmentRequest::STATUS_APPROVE,
             'canDecline' => $this->status == ShipmentRequest::STATUS_PENDING,
             'createdAt' => $this->created_at,
             'status' => $this->status,

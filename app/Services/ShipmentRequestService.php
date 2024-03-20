@@ -120,4 +120,13 @@ class ShipmentRequestService
             'data' => $shipmentRequestList
         ];
     }
+    public function addShipmentRequestItem($item, $id) {
+        $shipmentRequestItem = DB::table('shipment_request_items')->insert([
+            'shipment_request_id' => $id, // Assuming $id is the ShipmentRequest ID
+            'name' => $item['name'],
+            'quantity' => $item['quantity']
+            // Add other attributes as needed
+        ]);dd($shipmentRequestItem);
+        echo "SS";
+    }
 }

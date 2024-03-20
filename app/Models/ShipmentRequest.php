@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class ShipmentRequest extends Model
 {
     use HasFactory;
-    const TAG = 'inqui';
+    const TAG = 'shReq';
     const STATUS_PENDING = 'pendi';
     const STATUS_APPROVE = 'appro';
     const STATUS_DECLINE = 'decli';
@@ -20,13 +20,12 @@ class ShipmentRequest extends Model
     const PERMISSION_VIEW = 'view';
     const PERMISSION_UPDATE = 'updat';
     const PERMISSION_APPROVE = 'appro';
-    const PERMISSION_DECLINE = 'decli';
 
     protected $fillable = [
         'inquiry_id',
         'vehicle_id',
         'consignee_id',
-        'targetDeliveryDate',
+        'estimatedDeliveryDate',
         'origin',
         'destination',
         'status',

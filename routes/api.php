@@ -25,6 +25,7 @@ Route::group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers\Api\V1', 'm
     Route::get('inquiry/show/{id}', ['uses' => 'InquiryController@show']);
     Route::get('inquiry/receive/{id}', ['uses' => 'InquiryController@receive']);
     Route::get('inquiry/invalid/{id}', ['uses' => 'InquiryController@invalid']);
+    Route::get('inquiry/dropdown', ['uses' => 'InquiryController@dropdown'])->withoutMiddleware(['auth:sanctum']);
     Route::post('inquiry/inquire', ['uses' => 'InquiryController@inquire'])->withoutMiddleware(['auth:sanctum']);
     Route::apiResource('inquiry', InquiryController::class);
     Route::get('vehicle/dropdown', ['uses' => 'VehicleController@dropdown'])->withoutMiddleware(['auth:sanctum']);
@@ -46,6 +47,9 @@ Route::group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers\Api\V1', 'm
     Route::put('user/update/{id}', ['uses' => 'UserController@update']);
     Route::get('user/show/{id}', ['uses' => 'UserController@show']);
     Route::apiResource('user', UserController::class);
+    Route::get('shipment-request/approve/{id}', ['uses' => 'ShipmentRequestController@approve']);
+    Route::get('shipment-request/unapprove/{id}', ['uses' => 'ShipmentRequestController@unapprove']);
+    Route::get('shipment-request/decline/{id}', ['uses' => 'ShipmentRequestController@decline']);
     Route::get('shipment-request/show/{id}', ['uses' => 'ShipmentRequestController@show']);
     Route::put('shipment-request/update/{id}', ['uses' => 'ShipmentRequestController@update']);
     Route::apiResource('shipment-request', ShipmentRequestController::class);
